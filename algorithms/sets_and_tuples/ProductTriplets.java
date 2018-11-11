@@ -1,4 +1,6 @@
 package sets_and_tuples;
+import util.ProblemSetIO;
+
 import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -86,21 +88,17 @@ public class ProductTriplets {
     // C:\Users\yijin\Desktop\Dropbox (Personal)\admin\resoom\SE INTERVIEW\test-cases\product-triplets-large.in
     // C:\Users\yijin\Desktop\Dropbox (Personal)\admin\resoom\SE INTERVIEW\test-cases\a.txt
     public static void main(String... args) throws IOException {
-        Scanner in = new Scanner(System.in);
-        System.out.println("Enter input file path");
-        Path path = Paths.get(in.nextLine());
-        in = new Scanner(path);
-        PrintStream out = new PrintStream(new FileOutputStream(Paths.get(path.toString()+ ".out").toFile()));
-        int T = in.nextInt();
-        for (int t = 0; t < T; t++) {
-            System.out.println("Test case " + (t+1) + " start! " + LocalTime.now());
+
+        Path inPath = ProblemSetIO.askForInputFile();
+        Path outPath = Paths.get(inPath.toString()+ ".out");
+
+        ProblemSetIO.googleCodeJam(inPath, outPath, (t, in, out) -> {
             int N = in.nextInt();
             in.nextLine();
             long[] values = Arrays.stream(in.nextLine().split(" ")).mapToLong(Long::parseLong).toArray();
             long count = solve(values);
             out.println("Case #" + (t+1) + ": " + count);
-            System.out.println();
-        }
+        });
     }
 
     static class ValCounter {
