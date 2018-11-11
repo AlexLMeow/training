@@ -1,5 +1,6 @@
 package sets_and_tuples;
 import util.Counter;
+import util.MathUtil;
 import util.ProblemSetIO;
 
 import java.io.*;
@@ -49,7 +50,7 @@ public class ProductTriplets {
                 // from [count in full list].
                 long choices = 1;
                 for (Counter.Entry<Long> e : new Counter<>(x, y, z).getEntries()) {
-                    choices *= nCk(counter.getCountFor(e.item), e.count);
+                    choices *= MathUtil.nCk(counter.getCountFor(e.item), e.count);
                 }
                 totalCount += choices;
             }
@@ -75,15 +76,6 @@ public class ProductTriplets {
         return count;
     }
 
-    static long nCk(int n, int k) {
-        long res = 1; // nC(0) is 1
-        for (int kk = 1; kk <= k; kk++) { // MUST BUILD UP FROM K=0, SO THAT EVERY STEP IS AN INTEGER
-            double real = ((double) res) * (n-kk+1) / kk;
-            res = Math.round(real);
-        }
-        return res;
-    }
-
     public static void main(String... args) throws IOException {
         Path inPath = ProblemSetIO.askForInputFile();
         Path outPath = Paths.get(inPath.toString()+ ".out");
@@ -95,43 +87,5 @@ public class ProductTriplets {
             long count = solve(values);
             out.println("Case #" + t + ": " + count);
         });
-    }
-
-    static class ValCounter {
-        static class ValCount {
-            final long val;
-            final int count;
-            ValCount(long val, int count) {
-                this.val = val;
-                this.count = count;
-            }
-        }
-        private Map<Long, Integer> counts;
-        ValCounter(long... vals) {
-            counts = new HashMap<>();
-            for (long v : vals) {
-                Integer count = counts.get(v);
-                if (count == null) {
-                    count = 1;
-                } else {
-                    count++;
-                }
-                counts.put(v, count);
-            }
-        }
-        public int countOf(long val) {
-            Integer count = counts.get(val);
-            return count == null ? 0 : count;
-        }
-        public long[] getUniqueVals() {
-            return counts.keySet().stream()
-                    .mapToLong(x -> x)
-                    .toArray();
-        }
-        public List<ValCount> getAllCounts() {
-            return counts.entrySet().stream()
-                    .map(e -> new ValCount(e.getKey(), e.getValue()))
-                    .collect(Collectors.toList());
-        }
     }
 }
