@@ -84,9 +84,6 @@ public class ProductTriplets {
         return res;
     }
 
-    // C:\Users\yijin\Desktop\Dropbox (Personal)\admin\resoom\SE INTERVIEW\test-cases\product-triplets-small.in
-    // C:\Users\yijin\Desktop\Dropbox (Personal)\admin\resoom\SE INTERVIEW\test-cases\product-triplets-large.in
-    // C:\Users\yijin\Desktop\Dropbox (Personal)\admin\resoom\SE INTERVIEW\test-cases\a.txt
     public static void main(String... args) throws IOException {
 
         Path inPath = ProblemSetIO.askForInputFile();
