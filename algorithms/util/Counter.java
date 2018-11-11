@@ -33,7 +33,7 @@ public class Counter<E> {
         this();
         for (E item : items) { this.incrementCountFor(item); }
     }
-    public Counter(E[] items) {
+    public Counter(E... items) {
         this(Arrays.asList(items));
     }
 
@@ -43,12 +43,12 @@ public class Counter<E> {
         this.allowNegativeCounts = allowNegativeCounts;
         this.rememberZeroCounts = rememberZeroCounts;
     }
-    public Counter(Collection<E> items, boolean allowNegativeCounts, boolean rememberZeroCounts) {
+    public Counter(boolean allowNegativeCounts, boolean rememberZeroCounts, Collection<E> items) {
         this(allowNegativeCounts, rememberZeroCounts);
         for (E item : items) { this.incrementCountFor(item); }
     }
-    public Counter(E[] items, boolean allowNegativeCounts, boolean rememberZeroCounts) {
-        this(Arrays.asList(items), allowNegativeCounts, rememberZeroCounts);
+    public Counter(boolean allowNegativeCounts, boolean rememberZeroCounts, E... items) {
+        this(allowNegativeCounts, rememberZeroCounts, Arrays.asList(items));
     }
 
     /**

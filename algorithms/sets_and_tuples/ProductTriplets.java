@@ -1,10 +1,10 @@
 package sets_and_tuples;
+import util.Counter;
 import util.ProblemSetIO;
 
 import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.time.LocalTime;
 import java.util.*;
 import java.util.stream.*;
 
@@ -37,9 +37,9 @@ public class ProductTriplets {
      */
 
     static long solve(long[] values) {
-        ValCounter counter = new ValCounter(values);
-        long[] uniques = counter.getUniqueVals();
-        long count = 0;
+        Counter<Long> counter = new Counter<>(Arrays.stream(values).boxed().collect(Collectors.toList()));
+        long[] uniques = counter.getItemSet().stream().mapToLong(x -> x).toArray();
+        long totalCount = 0;
         for (int i = 0; i < uniques.length; i++) {
             long x = uniques[i];
             for (int j = i; j < uniques.length; j++) {
@@ -48,13 +48,13 @@ public class ProductTriplets {
                 // ways to choose values matching (x,y,z) is the product of choosing [count in x,y,z] values
                 // from [count in full list].
                 long choices = 1;
-                for (ValCounter.ValCount c : new ValCounter(x, y, z).getAllCounts()) {
-                    choices *= nCk(counter.countOf(c.val), c.count);
+                for (Counter.Entry<Long> e : new Counter<>(x, y, z).getEntries()) {
+                    choices *= nCk(counter.getCountFor(e.item), e.count);
                 }
-                count += choices;
+                totalCount += choices;
             }
         }
-        return count;
+        return totalCount;
     }
 
     static long solveAllDistinct(long[] values) {
@@ -85,7 +85,6 @@ public class ProductTriplets {
     }
 
     public static void main(String... args) throws IOException {
-
         Path inPath = ProblemSetIO.askForInputFile();
         Path outPath = Paths.get(inPath.toString()+ ".out");
 
