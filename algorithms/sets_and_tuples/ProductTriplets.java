@@ -93,7 +93,7 @@ public class ProductTriplets {
             in.nextLine();
             long[] values = Arrays.stream(in.nextLine().split(" ")).mapToLong(Long::parseLong).toArray();
             long count = solve(values);
-            out.println("Case #" + (t+1) + ": " + count);
+            out.println("Case #" + t + ": " + count);
         });
     }
 
