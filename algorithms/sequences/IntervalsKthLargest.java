@@ -3,7 +3,6 @@ package sequences;
 import util.*;
 
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.*;
 
 /** Google Code Jam Kickstart round G 2018
@@ -180,7 +179,7 @@ public class IntervalsKthLargest {
     // todo failed for small and large test cases
     public static void main(String... args) throws Exception {
         Path inPath = ProblemSetIO.askForInputFile();
-        Path outPath = Paths.get(inPath.toString()+ ".out");
+        Path outPath = ProblemSetIO.defaultOutFile(inPath);
 
         ProblemSetIO.googleCodeJam(inPath, outPath, (t, in, out) -> {
             int N = in.nextInt();

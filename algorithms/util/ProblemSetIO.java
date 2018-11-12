@@ -45,4 +45,8 @@ public class ProblemSetIO {
         System.out.println("Enter input file path");
         return Paths.get(stdin.nextLine());
     }
+
+    public static Path defaultOutFile(Path infile) {
+        return Paths.get(infile.toString() + ".out");
+    }
 }
