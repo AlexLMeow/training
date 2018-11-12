@@ -14,6 +14,12 @@ public class Counter<E> {
             this.item = item;
             this.count = count;
         }
+        @Override
+        public String toString() {
+            return "{" + item + "} -> " + count;
+        }
+        public E item() {return item;}
+        public int count() {return count;}
     }
 
     private Map<E, Integer> counts;
@@ -145,7 +151,7 @@ public class Counter<E> {
     public List<Entry<E>> getEntries() {
         return counts.entrySet().stream()
                 .map(e -> new Entry<>(e.getKey(), e.getValue()))
-                .collect(Collectors.toList());
+                .collect(Collectors.toCollection(ArrayList::new));
     }
 
     /**

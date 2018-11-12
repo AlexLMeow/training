@@ -13,10 +13,7 @@ public class ProblemSetIO {
     @FunctionalInterface
     public interface TestCaseHandler {
         /**
-         *
          * @param t test case id (1-indexed)
-         * @param in
-         * @param out
          */
         void handleCase(int t, Scanner in, PrintStream out);
     }
@@ -28,13 +25,18 @@ public class ProblemSetIO {
         Scanner in = new Scanner(inFile);
         PrintStream out = new PrintStream(new FileOutputStream(outFile.toFile()));
         int T = in.nextInt();
+        long startTime = 0;
         for (int t = 1; t <= T; t++) {
-            System.out.println("Test case " + t + " start! " + LocalTime.now());
-            long startTime = System.nanoTime();
+            if (t % 5 == 1) {
+                System.out.println("Test case " + t + " start! " + LocalTime.now());
+                startTime = System.nanoTime();
+            }
             handler.handleCase(t, in, out);
-            double elapsedTime = ((double) System.nanoTime() - startTime) / 10e9;
-            System.out.println("Case time elapsed: " + elapsedTime + "s");
-            System.out.println();
+            if (t % 5 == 0) {
+                double elapsedTime = ((double) System.nanoTime() - startTime) / 10e9;
+                System.out.println("Case time elapsed: " + elapsedTime + "s");
+                System.out.println();
+            }
         }
     }
 
