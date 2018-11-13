@@ -80,7 +80,7 @@ public class ProductTriplets {
         Path inPath = ProblemSetIO.askForInputFile();
         Path outPath = Paths.get(inPath.toString()+ ".out");
 
-        ProblemSetIO.googleCodeJam(inPath, outPath, (t, in, out) -> {
+        ProblemSetIO.googleCodeFileIO(inPath, outPath, (t, in, out) -> {
             int N = in.nextInt();
             in.nextLine();
             long[] values = Arrays.stream(in.nextLine().split(" ")).mapToLong(Long::parseLong).toArray();

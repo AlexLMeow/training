@@ -21,9 +21,18 @@ public class ProblemSetIO {
     /**
      * Handles test case iteration and logging
      */
-    public static void googleCodeJam(Path inFile, Path outFile, TestCaseHandler handler) throws IOException {
+    public static void googleCodeFileIO(Path inFile, Path outFile, TestCaseHandler handler) throws IOException {
         Scanner in = new Scanner(inFile);
         PrintStream out = new PrintStream(new FileOutputStream(outFile.toFile()));
+        googleCodeJam(in, out, handler);
+    }
+
+    public static void googleCodeJamSTDIO(TestCaseHandler handler) {
+        System.out.println("Enter input to stdin");
+        googleCodeJam(new Scanner(System.in), System.out, handler);
+    }
+
+    private static void googleCodeJam(Scanner in, PrintStream out, TestCaseHandler handler) {
         int T = in.nextInt();
         long startTime = 0;
         for (int t = 1; t <= T; t++) {

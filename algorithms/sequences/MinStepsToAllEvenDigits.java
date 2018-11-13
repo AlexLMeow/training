@@ -4,10 +4,7 @@ import util.ProblemSetIO;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 /**
  * Given a number N, find the minimum number of steps to change the N
@@ -100,7 +97,7 @@ public class MinStepsToAllEvenDigits {
     public static void main(String... args) throws IOException {
         Path infile = ProblemSetIO.askForInputFile();
         Path outfile = ProblemSetIO.defaultOutFile(infile);
-        ProblemSetIO.googleCodeJam(infile, outfile, (t, in, out) -> {
+        ProblemSetIO.googleCodeFileIO(infile, outfile, (t, in, out) -> {
             long steps = minSteps(in.nextLong());
             out.println("Case #" + t + ": " + steps);
         });
