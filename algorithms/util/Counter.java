@@ -18,8 +18,8 @@ public class Counter<E> {
         public String toString() {
             return "{" + item + "} -> " + count;
         }
-        public E item() {return item;}
-        public int count() {return count;}
+        public E item() {return item;} // help with method referencing
+        public int count() {return count;} // help with method referencing
     }
 
     private Map<E, Integer> counts;
