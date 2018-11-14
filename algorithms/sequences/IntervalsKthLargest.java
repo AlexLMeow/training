@@ -168,7 +168,7 @@ public class IntervalsKthLargest {
         Path inPath = ProblemSetIO.askForInputFile();
         Path outPath = ProblemSetIO.defaultOutFile(inPath);
 
-        ProblemSetIO.googleCodeFileIO(inPath, outPath, (t, in, out) -> {
+        ProblemSetIO.googleCodeJamFileIO(inPath, outPath, (t, in, out) -> {
             int N = in.nextInt();
             int Q = in.nextInt();
             long[] X = genSequence(N, in.nextLong(), in.nextLong(), in.nextLong(), in.nextLong(), in.nextLong(), in.nextLong());

@@ -21,7 +21,7 @@ public class ProblemSetIO {
     /**
      * Handles test case iteration and logging
      */
-    public static void googleCodeFileIO(Path inFile, Path outFile, TestCaseHandler handler) throws IOException {
+    public static void googleCodeJamFileIO(Path inFile, Path outFile, TestCaseHandler handler) throws IOException {
         Scanner in = new Scanner(inFile);
         PrintStream out = new PrintStream(new FileOutputStream(outFile.toFile()));
         googleCodeJam(in, out, handler);

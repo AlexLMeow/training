@@ -23,7 +23,6 @@ public class Counter<E> {
     }
 
     private Map<E, Integer> counts;
-    private int totalCount = 0;
 
     // config flags
 
@@ -64,7 +63,6 @@ public class Counter<E> {
         this(cloneFrom.allowNegativeCounts, cloneFrom.rememberZeroCounts);
         // can directly copy internal state since same config constraints
         this.counts = new HashMap<>(cloneFrom.counts);
-        this.totalCount = cloneFrom.totalCount;
     }
     public Counter(Counter<E> cloneFrom, boolean allowNegativeCounts, boolean rememberZeroCounts) {
         this(allowNegativeCounts, rememberZeroCounts);
@@ -78,16 +76,8 @@ public class Counter<E> {
      * O(1) time.
      */
     public int getCountFor(E item) {
-        Integer count = this.counts.get(item);
-        if (count == null) { count = 0; }
-        return count;
+        return this.counts.getOrDefault(item, 0);
     }
-
-    /**
-     * Retrieve combined count of all items this counter has ever seen.
-     * O(1) time.
-     */
-    public int getCombinedCount() { return totalCount; }
 
     /**
      * Increment count of given item.
@@ -133,11 +123,9 @@ public class Counter<E> {
         if (!rememberZeroCounts && newCount == 0) {
             prevCount = this.counts.remove(item);
             if (prevCount == null) { prevCount = 0; }
-            totalCount += newCount - prevCount;
         } else {
             prevCount = this.counts.put(item, newCount);
             if (prevCount == null) { prevCount = 0; }
-            totalCount += newCount - prevCount;
         }
         return prevCount;
     }

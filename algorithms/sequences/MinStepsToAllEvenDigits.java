@@ -97,7 +97,7 @@ public class MinStepsToAllEvenDigits {
     public static void main(String... args) throws IOException {
         Path infile = ProblemSetIO.askForInputFile();
         Path outfile = ProblemSetIO.defaultOutFile(infile);
-        ProblemSetIO.googleCodeFileIO(infile, outfile, (t, in, out) -> {
+        ProblemSetIO.googleCodeJamFileIO(infile, outfile, (t, in, out) -> {
             long steps = minSteps(in.nextLong());
             out.println("Case #" + t + ": " + steps);
         });
