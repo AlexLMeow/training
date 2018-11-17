@@ -22,21 +22,6 @@ public class ProductTriplets {
 	 * z = x * y
 	 * degenerates to: find all pairs (x,y) that multiply to form a third number z. (we can swap x,y,z)
 	 * <p>
-	 * <p>
-	 * GENERALIZATION: K variables in equation (eg. a + b + c = d + e + f)
-	 * - Half in loops, other half (d+e+f) stored in hashmap
-	 * - hashmap key = result of operation, value = list of K/2-tuples
-	 * - also store counter of individual values
-	 * eg. 6 vars
-	 * for (a in vals):
-	 * for (b in vals):
-	 * for (c in vals):
-	 * combined = a + b + c
-	 * matching_triplets = triplemap.get(combined) // unique triplets that also sum to form a+b+c
-	 * for (d,e,f in matching_triplets):
-	 * instances = new Counter(a,b,c,d,e,f)
-	 * for (x,cnt in instances):
-	 * totalSum += nCk(freqs.countOf(x), cnt) // ways to create this 6-tuple from full list including dups
 	 */
 
 	static long solve(long[] values) {

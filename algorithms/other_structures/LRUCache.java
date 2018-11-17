@@ -1,5 +1,7 @@
 package other_structures;
 import java.util.*;
+import java.util.stream.Collectors;
+
 public class LRUCache {
 
 	class ListNode {
@@ -55,7 +57,7 @@ public class LRUCache {
 			makeMostRecent(node);
 			return node.value;
 		} else {
-			return  -1;
+			return -1;
 		}
 	}
 
@@ -132,7 +134,10 @@ public class LRUCache {
 		}
 
 	}
+
+		//		return trips;
 }
+
 
 /**
  * Your LRUCache object will be instantiated and called as such:
