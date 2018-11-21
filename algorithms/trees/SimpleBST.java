@@ -232,9 +232,22 @@ public class SimpleBST<E extends Comparable<E>> implements BinaryTree<E> {
 			if (this.right != null) { this.right.recursiveTraverseInOrder(itemHandler); }
 		}
 		protected void iterativeTraversePostOrder(Consumer<Node<E>> itemHandler) {
+			Deque<Node<E>> notVisited = new ArrayDeque<>();
 			Deque<Node<E>> visited = new ArrayDeque<>();
-			iterativeTraversePreOrder(visited::push); // reverse of preorder
-			while (visited.size() > 0) { itemHandler.accept(visited.pop()); }
+			notVisited.push(this); // start with root of subtree
+			while (notVisited.size() > 0) {
+				Node<E> current = notVisited.pop();
+				if (current.hasLeftChild()) { // visit left second
+					notVisited.push(current.left);
+				}
+				if (current.hasRightChild()) {
+					notVisited.push(current.right);
+				}
+				visited.push(current);
+			}
+			while (!visited.isEmpty()) {
+				itemHandler.accept(visited.pop());
+			}
 		}
 		protected void recursiveTraversePostOrder(Consumer<Node<E>> itemHandler) {
 			if (this.left != null) { this.left.recursiveTraversePostOrder(itemHandler); }
