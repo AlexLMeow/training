@@ -4,6 +4,10 @@ import java.util.*;
 
 public class IntervalTree {
 
+	// interval trees support updates
+	// remembers the actual intervals
+
+
 	// Augment a self balancing tree with maxEnd. key is Interval, sorted by start then end
 
 	static class Node {
@@ -55,4 +59,6 @@ public class IntervalTree {
 		if (target.end >= root.interval.start) return findAnyOverlapping(root.right, target); // O(log(n))
 		return null; // not found
 	}
+
+	// todo construct, add, remove
 }
